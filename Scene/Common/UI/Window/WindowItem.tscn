@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="StyleBox" uid="uid://ddqoxj47v6oo7" path="res://Scene/Common/UI/Window/WindowItemFocus.tres" id="1_67q70"]
+[ext_resource type="Script" path="res://Scene/Common/UI/Window/WindowItem.gd" id="1_q0n6v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jqca1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7b2um"]
+
+[node name="WindowItem" type="Button"]
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jqca1")
+theme_override_styles/hover = ExtResource("1_67q70")
+theme_override_styles/pressed = ExtResource("1_67q70")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_7b2um")
+theme_override_styles/focus = ExtResource("1_67q70")
+script = ExtResource("1_q0n6v")
+
+[node name="FocusMe" type="AudioStreamPlayer" parent="."]
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="." to="." method="_on_window_item_mouse_entered"]
+[connection signal="finished" from="FocusMe" to="." method="_on_item_focus_me_finished"]
